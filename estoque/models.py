@@ -16,7 +16,8 @@ class Produto(models.Model):
         max_length=255,
         null=False,
         blank=False,
-        unique=True
+        unique=True,
+        verbose_name='Nome do Produto'
     )
     categoria = models.CharField(
         choices=CHOICES_CATEGORIA,
@@ -45,12 +46,15 @@ class Produto(models.Model):
         blank=False,
         null=False
     )
+
     history = HistoricalRecords()
+
     _change_reason = models.CharField(
         max_length=255,
         blank=True,
         verbose_name='Razão da alteração'
     )
+    
     def __str__(self) -> str:
         return self.nome
 
