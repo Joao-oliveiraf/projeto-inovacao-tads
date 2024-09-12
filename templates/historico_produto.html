@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historico</title>
+</head>
+<body>
+    <h1>Histórico do Produto: {{ produto.nome }}</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Data da Alteração</th>
+                <th>Usuário</th>
+                <th>Alterações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for registro in historico %}
+            <tr>
+                <td>{{ registro.history_date }}</td>
+                <td>{{ registro.history_user }}</td>
+                <td>
+                    {% if registro.history_change_reason %}
+                    {{registro.history_change_reason}}
+                    {% else %}
+                    <strong>Criado</strong>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <h2>Comparações de Alterações:</h2>
+    <ul>
+        {% for comparacao in comparacoes %}
+            <li>
+                {% for change in comparacao.changes %}
+                    {% if change %}
+                    Campo {{ change.field }} foi alterado de "{{ change.old }}" para "{{ change.new }}"
+                    {% else %}
+                    aoskdoaksodksaodas
+                    {% endif %}
+                {% endfor %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
