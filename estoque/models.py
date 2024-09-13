@@ -5,12 +5,16 @@ class Produto(models.Model):
     CHOICES_CATEGORIA = [
         ('E', 'Eletronicos'),
         ('D', 'Domésticos'),
-        ('CMB', 'Casa, Mesa e Banho'),
+        ('CMB', 'Cama, Mesa e Banho'),
     ]
     CHOICES_LOCALIZACAO = [
         ('R1', 'Rua 1'),
         ('R2', 'Rua 2'),
         ('R3', 'Rua 3'),
+    ]
+    CHOICES_RAZAO = [
+        ('Compra', 'Compra'),
+        ('Venda', 'Venda'),
     ]
     nome = models.CharField(
         max_length=255,
@@ -50,9 +54,11 @@ class Produto(models.Model):
     history = HistoricalRecords()
 
     _change_reason = models.CharField(
+        choices=CHOICES_RAZAO,
         max_length=255,
         blank=True,
-        verbose_name='Razão da alteração'
+        verbose_name='Razão da alteração',
+        default='Criar'
     )
     
     def __str__(self) -> str:
