@@ -60,7 +60,6 @@ def criar():
 ]
 
     choices_localizacao = ['R1','R2','R3']
-    choices_categoria = ['E','D','CMB']
     for item in produtos:
         localizacao = random.choice(choices_localizacao)
         p = Produto(
